@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+/* Base Styles */
+* {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif !important;
+    background: #f8f9fa;
+    color: #16726d;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Text Styling */
+h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, select, textarea, label, 
+.btn, .nav-link, .dropdown-item, .card-title, .card-text, .table, th, td, 
+.form-control, .form-select, .alert {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+p, a, span, .card-text, td {
+    font-weight: 500 !important;
+}
+
+/* Layout Structure */
+.navbar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    height: 60px;
+}
+
+.navbar {
+    background: #16726d !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+    height: 60px;
+}
+
+.navbar .navbar-brand, 
+.navbar .nav-link, 
+.navbar .dropdown-item {
+    color: #fff !important;
+}
+
+.navbar .navbar-brand span {
+    color: #d0dcad !important;
+    font-weight: 600 !important;
+}
+
+/* Navbar dropdown styles */
+.navbar .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+.navbar .dropdown-menu {
+    background-color: #fff !important;
+    border: 1px solid #16726d !important;
+    position: absolute;
+    z-index: 1000;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    right: 0;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    color: #16726d !important;
+    font-weight: 500 !important;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #d0dcad !important;
+    color: #0a3834 !important;
+}
+
+.navbar .dropdown-menu .dropdown-divider {
+    border-top: 1px solid #16726d !important;
+    opacity: 0.2;
+}
+
+.navbar .dropdown-menu button.dropdown-item {
+    text-align: left;
+    width: 100%;
+}
+
+.navbar .dropdown-toggle {
+    cursor: pointer;
+}
+
+.navbar .nav-item.dropdown {
+    position: relative;
+}
+
+/* Make Admin dropdown always clickable */
+.navbar .nav-item .dropdown-toggle {
+    pointer-events: auto !important;
+}
+
+/* Page Container */
+.page-container {
+    display: flex;
+    padding-top: 60px; /* Same as navbar height */
+    min-height: calc(100vh - 60px); /* Full height minus navbar */
+    position: relative;
+    width: 100%;
+}
+
+/* Fixed Width Non-Resizable Sidebar */
+.sidebar {
+    width: 250px;
+    background: #d0dcad !important;
+    border-right: 2px solid #16726d;
+    position: fixed;
+    top: 60px; /* Below navbar */
+    bottom: 0;
+    left: 0;
+    z-index: 900;
+    overflow-y: auto; /* Allow scrolling if content is tall */
+    overflow-x: hidden;
+    height: calc(100vh - 60px); /* Ensure full height minus navbar */
+}
+
+.sidebar-container {
+    padding: 1rem;
+}
+
+/* Sidebar Navigation Links */
+.sidebar .nav-link {
+    color: #16726d !important;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar .nav-link.active, 
+.sidebar .nav-link:hover {
+    background: #16726d !important;
+    color: #fff !important;
+}
+
+/* Special styling for user management item */
+.sidebar .nav-item.user-management-item {
+    background: transparent !important;
+    border-left: 4px solid #16726d;
+}
+
+/* Icons in sidebar */
+.sidebar .nav-link i {
+    color: #16726d !important;
+    margin-right: 8px;
+}
+
+.sidebar .nav-link.active i, 
+.sidebar .nav-link:hover i {
+    color: #fff !important;
+}
+
+/* Submenu styling */
+.sidebar-submenu {
+    list-style: none;
+    padding-left: 2.5rem;
+    margin-top: 0.25rem;
+}
+
+.sidebar-submenu.show {
+    display: block;
+}
+
+.sidebar-submenu .nav-link {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Menu title spacing */
+.sidebar .menu-title {
+    margin-left: 0.5rem !important;
+}
+
+/* Sidebar Submenu Expanded State */
+.sidebar .submenu-toggle {
+    transition: transform 0.2s;
+}
+
+.sidebar .has-submenu .nav-link[aria-expanded="true"] .submenu-toggle,
+.sidebar .has-submenu.active .submenu-toggle {
+    transform: rotate(90deg);
+}
+
+/* Main Content Area */
+.content {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 1.5rem;
+    flex: 1; /* Take remaining space */
+    transition: all 0.3s ease;
+    width: calc(100% - 250px);
+}
+
+/* When parent menu is expanded, make sure the submenu stays visible */
+.sidebar .has-submenu .collapse.show,
+.sidebar .has-submenu .collapsing {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Make sure dropdowns stay in place */
+.sidebar .nav-item.has-submenu,
+.sidebar .collapse, 
+.sidebar .collapse.show,
+.sidebar .collapsing {
+    width: 100% !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* Ensure Bootstrap's collapse functionality works properly */
+.sidebar .collapse {
+    height: auto !important;
+}
+
+.sidebar .collapse:not(.show) {
+    display: none !important;
+}
+
+.sidebar .collapse.show {
+    display: block !important;
+}
+
+/* Button Styling */
+.btn {
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin-right: 0.25rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Make sure buttons with icons have consistent spacing */
+.btn i {
+    margin-right: 0.5rem;
+}
+
+/* Fix for buttons in button groups */
+.btn-group .btn {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+/* Button color scheme */
+.btn-primary {
+    background: #16726d !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-primary:hover {
+    background: #0e4d3a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: #d0dcad !important;
+    color: #0a3834 !important;
+    border: none !important;
+}
+.btn-secondary:hover {
+    background: #b5c47a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-success {
+    background: #16726d !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-success:hover {
+    background: #0e4d3a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-info {
+    background: #d0dcad !important;
+    color: #0a3834 !important;
+    border: none !important;
+}
+.btn-info:hover {
+    background: #b5c47a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-warning {
+    background: #d0dcad !important;
+    color: #0a3834 !important;
+    border: none !important;
+}
+.btn-warning:hover {
+    background: #b5c47a !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-danger {
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+}
+.btn-danger:hover {
+    background: #333 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Standard button row spacing */
+.btn-row,
+.action-buttons,
+.card-footer,
+.modal-footer {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Handle buttons in tables */
+td .btn {
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Card styling */
+.card {
+    border-radius: 10px;
+    border: 2px solid #16726d;
+    box-shadow: 0 2px 8px rgba(22, 114, 109, 0.05);
+    background: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1rem !important;
+}
+
+.card-header {
+    background: #16726d !important;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0 !important;
+    border-bottom: none !important;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.2rem !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+    letter-spacing: 0.03em;
+}
+
+.card-header h5 {
+    color: #fff !important;
+    margin-bottom: 0;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* Table styling */
+.table {
+    background: #fff;
+    color: #16726d;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem !important;
+}
+.table thead {
+    background: #16726d;
+    color: #fff;
+}
+.table thead th {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+.table tbody tr {
+    background: #d0dcad;
+    color: #16726d;
+    transition: background 0.2s;
+}
+.table tbody tr:hover {
+    background: #b5c47a;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #16726d;
+    margin-bottom: 1rem;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.3rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1.1rem; }
+
+/* Form elements */
+label, .form-label {
+    font-weight: 600;
+    color: #16726d;
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem;
+}
+
+input, select, textarea {
+    border-radius: 6px !important;
+    border: 1px solid #16726d !important;
+    font-size: 1rem !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+.alert-info {
+    background: #d0dcad !important;
+    color: #16726d !important;
+    border: none !important;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination .page-link {
+    font-weight: 600;
+    border-radius: 6px;
+    margin: 0 2px;
+    font-size: 1rem !important;
+}
+.pagination .page-item.active .page-link {
+    background: #16726d !important;
+    color: #fff !important;
+    border: none !important;
+}
+.pagination .page-link {
+    background: #d0dcad !important;
+    color: #16726d !important;
+    border: none !important;
+}
+.pagination .page-link:hover {
+    background: #b5c47a !important;
+}
+
+/* Consistent spacing */
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.d-flex.justify-content-between,
+.d-flex.justify-content-end {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Button text alignment with icons */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+}
+
+.btn-sm i {
+    font-size: 0.875rem;
+}
+
+/* Responsive layouts */
+@media (max-width: 767.98px) {
+    .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+        overflow-y: visible;
+    }
+    
+    .content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    
+    .page-container {
+        flex-direction: column;
+    }
+    
+    .navbar-header {
+        position: relative;
+    }
+    
+    body {
+        overflow: auto;
+    }
+    
+    .sidebar-container {
+        padding-bottom: 1rem;
+    }
+    
+    .content {
+        padding-bottom: 1rem;
+    }
+}
